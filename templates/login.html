@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://www.shutterstock.com/image-vector/spy-agent-hacker-anonymous-white-600nw-1722014434.jpg" type="image/png" />
+    <title>User Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #1a2a6c, #b21f1f);
+            color: white;
+        }
+        .container {
+            width: 30%;
+            max-width: 30%;
+            background: transparent;
+            padding-top: 20px;
+            padding-bottom:20px;
+            
+            border-radius: 15px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .input-field {
+            width: 35%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            color:black;
+        }
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 35%;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-2xl font-bold mb-4">User Login</h2>
+        <form id="userLoginForm">
+            <div class="form-group">
+                <input type="text" id="email" class="input-field" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" class="input-field" placeholder="Enter Password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("userLoginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Find a user whose email & password match
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                alert(`Welcome, ${user.name}! Login Successful.`);
+                window.location.href = "/index"; // Redirect to user dashboard
+            } else {
+                alert("Invalid email or password! Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>
