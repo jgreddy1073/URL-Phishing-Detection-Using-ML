@@ -1,14 +1,14 @@
-import whois
-from urllib.parse import urlparse
-import httpx
-import pickle as pk
+import whois #fetches domain registration data (used for age/expiry features).
+from urllib.parse import urlparse 
+import httpx #makes the HTTP request to the actual URL (used for iframe/mouseover/forwarding features).
+import pickle as pk #pickle loads your saved PCA model from disk.
 import pandas as pd
-import extractorFunctions as ef
+import extractorFunctions as ef #ef is your own module — imported as an alias so you can call ef.getLength() etc.
 
 #Function to extract features
 def featureExtraction(url):
 
-  features = []
+  features = [] #Empty basket, slowiy we put [],[len value],[ length value, depth value],...
   #Address bar based features (12)
   features.append(ef.getLength(url))
   features.append(ef.getDepth(url))
@@ -16,7 +16,7 @@ def featureExtraction(url):
   features.append(ef.prefixSuffix(url))
   features.append(ef.no_of_dots(url))
   features.append(ef.sensitive_word(url))
-
+#Why: builds up one feature vector (a list of numbers) per URL, in a fixed order — this order has to exactly match what the model was trained on.
 
   domain_name = ''
   #Domain based features (4)
