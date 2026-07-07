@@ -114,7 +114,7 @@ def domainAge(domain_name):
   else:
     ageofdomain = abs((expiration_date - creation_date).days)
     if ((ageofdomain/30) < 6):
-      age = 1
+      age = 1 #suspecious
     else:
       age = 0
   return age
@@ -135,7 +135,7 @@ def domainEnd(domain_name):
     today = datetime.now()
     end = abs((expiration_date - today).days)
     if ((end/30) < 6):
-      end = 0
+      end = 0 #suspecious
     else:
       end = 1
   return end
