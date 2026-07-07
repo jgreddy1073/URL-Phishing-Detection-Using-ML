@@ -170,6 +170,6 @@ def forwarding(response):
     return 1
   else:
     if len(response.history) <= 2:
-      return 0
+      return 0  # Safe
     else:
-      return 1
+      return 1  #Suspicious
