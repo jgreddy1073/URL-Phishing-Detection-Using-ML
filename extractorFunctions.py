@@ -143,13 +143,13 @@ def domainEnd(domain_name):
 # 15. IFrame Redirection (iFrame)
 def iframe(response):
   if response == "":
-      return 0 #safe
+      return 1 
   else:
       #if re.findall(r"<iframe>|<frameBorder>", response.text):
       if re.search(r"<iframe|frameBorder", response.text, re.IGNORECASE):
-          return 1 #suspecious
-      else:
           return 0 #safe
+      else:
+          return 1 #suspecious
 
 # 16.Checks the effect of mouse over on status bar (Mouse_Over)
 def mouseOver(response):
@@ -168,7 +168,7 @@ def mouseOver(response):
 # 18.Checks the number of forwardings (Web_Forwards)
 def forwarding(response):
   if response == "":
-    return 1
+    return 1  # Suspecious
   else:
     if len(response.history) <= 2:
       return 0  # Safe
