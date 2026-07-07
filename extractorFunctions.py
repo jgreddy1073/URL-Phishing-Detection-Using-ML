@@ -145,7 +145,7 @@ def iframe(response):
   if response == "":
       return 1
   else:
-      if re.findall(r"[<iframe>|<frameBorder>]", response.text):
+      if re.findall(r"<iframe>|<frameBorder>", response.text):
           return 0
       else:
           return 1
