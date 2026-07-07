@@ -156,7 +156,8 @@ def mouseOver(response):
     return 1
   else:
     try:
-      if re.findall("<script>.+onmouseover.+</script>", response.text):
+      #if re.findall("<script>.+onmouseover.+</script>", response.text):
+       if re.search(r"onmouseover", response.text, re.IGNORECASE):
         return 1
       else:
         return 0
